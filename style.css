@@ -1,0 +1,357 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 20px;
+    color: #333;
+}
+
+.game-container {
+    background: white;
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    max-width: 850px;
+    width: 100%;
+    margin-top: 20px;
+}
+
+h1 {
+    color: #4a148c;
+    margin-bottom: 20px;
+    font-size: 2.5em;
+}
+
+.game-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.score {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #6a1b9a;
+}
+
+.controls {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.controls button {
+    background: linear-gradient(135deg, #4a148c, #8e24aa);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: all 0.3s ease;
+    min-width: 100px;
+}
+
+.controls button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(74, 20, 140, 0.4);
+}
+
+.controls button:active {
+    transform: translateY(0);
+}
+
+.controls button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+#gameCanvas {
+    border: 3px solid #4a148c;
+    border-radius: 10px;
+    background-color: #f3e5f5;
+    display: block;
+    margin: 0 auto 20px;
+    max-width: 100%;
+    height: auto;
+}
+
+.game-instructions {
+    font-size: 1em;
+    color: #666;
+    line-height: 1.6;
+    margin-top: 15px;
+}
+
+.game-instructions p {
+    margin-bottom: 8px;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    body {
+        padding: 10px;
+    }
+    
+    .game-container {
+        margin: 10px auto;
+        padding: 20px;
+    }
+    
+    h1 {
+        font-size: 2em;
+    }
+    
+    .game-info {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    #gameCanvas {
+        width: 100%;
+        height: auto;
+    }
+}
+
+/* 背景音乐设置面板样式 */
+.music-settings {
+    margin-top: 25px;
+    padding: 20px;
+    background-color: #f8f0ff;
+    border-radius: 10px;
+    border: 2px solid #e1bee7;
+}
+
+.music-settings h3 {
+    color: #4a148c;
+    margin-bottom: 15px;
+    font-size: 1.2em;
+}
+
+.music-settings h4 {
+    margin-top: 15px;
+    margin-bottom: 10px;
+    color: #6a1b9a;
+    font-size: 1.1em;
+}
+
+.setting-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 12px;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.setting-group label {
+    width: 80px;
+    font-weight: bold;
+    color: #6a1b9a;
+    flex-shrink: 0;
+}
+
+.setting-group input[type="range"] {
+    flex: 1;
+    min-width: 150px;
+    -webkit-appearance: none;
+    appearance: none;
+    height: 6px;
+    background: #ddd;
+    border-radius: 3px;
+    outline: none;
+}
+
+.setting-group input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    background: linear-gradient(135deg, #4a148c, #8e24aa);
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.setting-group input[type="range"]::-moz-range-thumb {
+    width: 18px;
+    height: 18px;
+    background: linear-gradient(135deg, #4a148c, #8e24aa);
+    border-radius: 50%;
+    cursor: pointer;
+    border: none;
+}
+
+.setting-group select {
+        flex: 1;
+        min-width: 150px;
+        padding: 8px 12px;
+        border: 2px solid #e1bee7;
+        border-radius: 5px;
+        background-color: white;
+        color: #4a148c;
+        font-size: 1em;
+        cursor: pointer;
+        transition: border-color 0.3s ease;
+    }
+    
+    .setting-group input[type="file"] {
+        flex: 1;
+        padding: 8px 12px;
+        border: 2px solid #e1bee7;
+        border-radius: 5px;
+        background-color: white;
+        color: #4a148c;
+        cursor: pointer;
+    }
+
+.setting-group select:hover {
+    border-color: #8e24aa;
+}
+
+.setting-group select:focus {
+    outline: none;
+    border-color: #8e24aa;
+    box-shadow: 0 0 0 2px rgba(142, 36, 170, 0.2);
+}
+
+.setting-group span {
+        min-width: 50px;
+        text-align: right;
+        color: #6a1b9a;
+        font-weight: bold;
+    }
+    
+    .file-info {
+        margin-top: 10px;
+        padding: 8px;
+        background-color: rgba(255, 255, 255, 0.7);
+        border-radius: 4px;
+        color: #4a148c;
+        font-size: 14px;
+        text-align: center;
+    }
+
+/* 自定义音乐设置样式 */
+.custom-music-settings {
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 1px solid #e1bee7;
+}
+
+.note-settings {
+    margin: 15px 0;
+}
+
+.note-item {
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.note-item label {
+    width: 70px;
+    font-weight: normal;
+    color: #6a1b9a;
+    flex-shrink: 0;
+}
+
+.note-item select {
+    flex: 1;
+    min-width: 150px;
+    padding: 8px 12px;
+    border: 2px solid #e1bee7;
+    border-radius: 5px;
+    background-color: white;
+    color: #4a148c;
+    font-size: 1em;
+    cursor: pointer;
+    transition: border-color 0.3s ease;
+}
+
+.note-item select:hover {
+    border-color: #8e24aa;
+}
+
+.apply-btn {
+    background: linear-gradient(135deg, #4a148c, #8e24aa);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: bold;
+    margin-top: 10px;
+    transition: all 0.3s ease;
+}
+
+.apply-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(74, 20, 140, 0.4);
+}
+
+.apply-btn:active {
+    transform: translateY(0);
+}
+
+/* 隐藏自定义音乐设置区域（初始状态） */
+.custom-music-settings {
+    display: none;
+}
+
+@media (max-width: 480px) {
+    h1 {
+        font-size: 1.8em;
+    }
+    
+    .controls button {
+        padding: 8px 15px;
+        font-size: 0.9em;
+        min-width: 80px;
+    }
+    
+    .score {
+        font-size: 1.3em;
+    }
+    
+    .music-settings {
+        padding: 15px;
+    }
+    
+    .setting-group {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .setting-group label {
+        width: 100%;
+        margin-bottom: 5px;
+    }
+    
+    .setting-group input[type="range"],
+    .setting-group select {
+        width: 100%;
+    }
+    
+    .setting-group span {
+        text-align: left;
+        margin-top: 5px;
+    }
+}

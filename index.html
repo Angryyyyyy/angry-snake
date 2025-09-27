@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>贪吃蛇游戏</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="game-container">
+        <h1>贪吃蛇游戏</h1>
+        <div class="game-info">
+            <div class="score">分数: <span id="score">0</span></div>
+            <div class="controls">
+                <button id="startBtn">开始游戏</button>
+                <button id="pauseBtn">暂停游戏</button>
+                <button id="musicToggle">音乐开关</button>
+            </div>
+        </div>
+        <canvas id="gameCanvas" width="750" height="750"></canvas>
+        <div class="game-instructions">
+            <p>使用方向键控制蛇的移动</p>
+            <p>吃到食物得分，撞到墙壁或自己的身体游戏结束</p>
+            <p>空格键可以暂停/继续游戏</p>
+        </div>
+        
+        <!-- 背景音乐设置面板 -->
+        <div class="music-settings">
+            <h3>背景音乐设置</h3>
+            
+            <div class="setting-group">
+                <label for="volumeSlider">音量:</label>
+                <input type="range" id="volumeSlider" min="0" max="100" value="30">
+                <span id="volumeValue">30%</span>
+            </div>
+            
+            <div class="setting-group">
+                <label for="musicSource">音乐来源:</label>
+                <select id="musicSource">
+                    <option value="generated" selected>游戏生成</option>
+                    <option value="upload">上传歌曲</option>
+                </select>
+            </div>
+            
+            <!-- 游戏生成音乐设置 -->
+            <div id="generatedMusicSettings">
+                <div class="setting-group">
+                    <label for="speedSlider">速度:</label>
+                    <input type="range" id="speedSlider" min="20" max="200" value="50">
+                    <span id="speedValue">50%</span>
+                </div>
+                
+                <div class="setting-group">
+                    <label for="waveType">音色:</label>
+                    <select id="waveType">
+                        <option value="sine">正弦波</option>
+                        <option value="square">方波</option>
+                        <option value="sawtooth" selected>锯齿波</option>
+                        <option value="triangle">三角波</option>
+                    </select>
+                </div>
+                
+                <div class="setting-group">
+                    <label for="musicPattern">音乐模式:</label>
+                    <select id="musicPattern">
+                        <option value="default">默认</option>
+                        <option value="happy">欢快</option>
+                        <option value="adventure">冒险</option>
+                        <option value="mystery">神秘</option>
+                    </select>
+                </div>
+            </div>
+            
+            <!-- 上传歌曲设置 -->
+            <div id="uploadMusicSettings" style="display: none;">
+                <div class="setting-group">
+                    <label for="musicFile">上传周杰伦歌曲:</label>
+                    <input type="file" id="musicFile" accept=".mp3,.wav,.ogg">
+                </div>
+                <div id="musicFileInfo" class="file-info"></div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 移除外部音频元素，使用AudioContext API生成音效 -->
+    
+    <script src="script.js"></script>
+</body>
+</html>
